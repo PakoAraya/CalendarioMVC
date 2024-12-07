@@ -1,0 +1,29 @@
+
+# Eclipse project files
+.classpath
+.project
+.settings/
+.metadata/
+.sonarlint/
+bin/
+
+# IntelliJ IDEA project files
+.idea/
+*.iml
+out/
+
+# Ignorar archivos compilados de Java
+*.class
+
+# Ignorar bibliotecas y dependencias
+lib/
+
+# Ignorar configuracion Apache Tomcat
+conf/tomcat/
+conf/server.xml
+conf/context.xml
+conf/catalina.properties
+Servers/
+
+# Ignorar archivos de metadatos de macOS
+.DS_Store
