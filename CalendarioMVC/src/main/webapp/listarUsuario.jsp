@@ -26,20 +26,40 @@
                 </tr>
             </thead>
             <tbody>
-                <c:forEach var="usuario" items="${usuarios}">
-                    <tr>
-                        <td>${usuario.id}</td>
-                        <td>${usuario.nombre}</td>
-                        <td>${usuario.username}</td>
-                        <td>${usuario.email}</td>
-                        <td>${usuario.fechaNacimiento}</td>
-                        <td>${usuario.animal}</td>
-                        <td>
-                            <a href="modificarUsuario.jsp?id=${usuario.id}">Editar</a> |
-                            <a href="eliminarUsuario.jsp?id=${usuario.id}">Eliminar</a>
-                        </td>
-                    </tr>
-                </c:forEach>
+                <%
+                    java.util.List<com.edutecno.modelo.Usuario> usuarios = 
+                        (java.util.List<com.edutecno.modelo.Usuario>) request.getAttribute("usuarios");
+                    if (usuarios != null) {
+                        for (com.edutecno.modelo.Usuario usuario : usuarios) {
+                %>
+                        <tr>
+                            <td><%= usuario.getId() %></td>
+                            <td><%= usuario.getNombre() %></td>
+                            <td><%= usuario.getUsername() %></td>
+                            <td><%= usuario.getEmail() %></td>
+                            <td><%= usuario.getFechaNacimiento() %></td>
+                            <td><%= usuario.getAnimal() %></td>
+                            <td>
+                                <form action="modificarUsuario.jsp" method="get" style="display:inline;">
+                                    <input type="hidden" name="id" value="<%= usuario.getId() %>">
+                                    <button type="submit" class="action-btn">Editar</button>
+                                </form>
+                                <form action="eliminarUsuario.jsp" method="get" style="display:inline;">
+                                    <input type="hidden" name="id" value="<%= usuario.getId() %>">
+                                    <button type="submit" class="action-btn">Eliminar</button>
+                                </form>
+                            </td>
+                        </tr>
+                <%
+                        }
+                    } else {
+                %>
+                        <tr>
+                            <td colspan="7">No hay usuarios registrados.</td>
+                        </tr>
+                <%
+                    }
+                %>
             </tbody>
         </table>
     </main>

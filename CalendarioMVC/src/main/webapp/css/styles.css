@@ -1,12 +1,12 @@
 @charset "UTF-8";
-body{
+body {
   font-family: Arial, Helvetica, sans-serif;
   margin: 0;
   padding: 0;
   background-color: #f4f4f9;
 }
 
-header{
+header {
   background-color: #333;
   color: #fff;
   padding: 10px 20px;
@@ -46,6 +46,7 @@ form button {
 
 form button {
   background-color: #0056b3;
+  color: #fff; /* Added this line to set button text color to white */
 }
 
 .error-message {

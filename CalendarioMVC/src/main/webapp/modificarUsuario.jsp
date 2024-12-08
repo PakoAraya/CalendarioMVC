@@ -14,22 +14,29 @@
     <main>
         <h2>Modificar Usuario</h2>
         <form action="ModificarUsuarioServlet" method="post">
-            <label for="id">ID del Usuario</label>
-            <input type="text" id="id" name="id" value="${usuario.id}" readonly>
+            <% 
+                com.edutecno.modelo.Usuario usuario = (com.edutecno.modelo.Usuario) request.getAttribute("usuario");
+                if (usuario != null) {
+            %>
+                <label for="id">ID del Usuario</label>
+                <input type="text" id="id" name="id" value="<%= usuario.getId() %>" readonly>
 
-            <label for="nombre">Nombre</label>
-            <input type="text" id="nombre" name="nombre" value="${usuario.nombre}" required>
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="nombre" value="<%= usuario.getNombre() %>" required>
 
-            <label for="username">Usuario</label>
-            <input type="text" id="username" name="username" value="${usuario.username}" required>
+                <label for="username">Usuario</label>
+                <input type="text" id="username" name="username" value="<%= usuario.getUsername() %>" required>
 
-            <label for="email">Correo Electrónico</label>
-            <input type="email" id="email" name="email" value="${usuario.email}" required>
+                <label for="email">Correo Electrónico</label>
+                <input type="email" id="email" name="email" value="<%= usuario.getEmail() %>" required>
 
-            <label for="fechaNacimiento">Fecha de Nacimiento</label>
-            <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="${usuario.fechaNacimiento}" required>
+                <label for="fechaNacimiento">Fecha de Nacimiento</label>
+                <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="<%= usuario.getFechaNacimiento() %>" required>
 
-            <button type="submit">Actualizar Usuario</button>
+                <button type="submit">Actualizar Usuario</button>
+            <% } else { %>
+                <p>No se encontró el usuario.</p>
+            <% } %>
         </form>
     </main>
 </body>

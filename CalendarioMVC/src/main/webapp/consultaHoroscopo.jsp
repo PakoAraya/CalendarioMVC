@@ -19,14 +19,17 @@
 
             <button type="submit">Consultar</button>
         </form>
-        
-        <!-- Muestra el resultado del horóscopo -->
-        <c:if test="${not empty horoscopo}">
+
+        <!-- Mostrar resultado del horóscopo -->
+        <% 
+            String horoscopo = (String) request.getAttribute("horoscopo");
+            if (horoscopo != null) {
+        %>
             <div>
                 <h3>Resultado:</h3>
-                <p>Tu signo del horóscopo chino es: <strong>${horoscopo.animal}</strong></p>
+                <p>Tu signo del horóscopo chino es: <strong><%= horoscopo %></strong></p>
             </div>
-        </c:if>
+        <% } %>
     </main>
 </body>
 </html>
