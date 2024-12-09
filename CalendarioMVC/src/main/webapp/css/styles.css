@@ -14,42 +14,101 @@ header {
 }
 
 main {
-  margin: 20px auto;
+  margin: 20px 0;
   padding: 20px;
-  width: 90%;
-  max-width: 600px;
+  width: 100%; /* Ancho completo */
+  max-width: 100%; /* Sin límite */
   background-color: #fff;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
 
-form {
-  display: flex;
-  flex-direction: column;
+/* Contenedor de la tabla para permitir desplazamiento */
+.table-container {
+  overflow-x: auto; /* Permitir desplazamiento horizontal */
 }
 
-form label {
-  margin: 10px 0 5px;
-  font-weight: bold;
+/* Tabla principal */
+table {
+  width: 100%; /* Usa todo el ancho disponible */
+  border-collapse: collapse;
+  font-size: 16px;
+  text-align: left;
 }
 
-form input[type="text"],
-form input[type="email"],
-form input[type="password"],
-form input[type="date"],
-form button {
-  padding: 10px;
-  margin-bottom: 15px;
+table th,
+table td {
   border: 1px solid #ddd;
+  padding: 10px;
+  word-wrap: break-word; /* Ajusta contenido largo */
+}
+
+table th {
+  background-color: #4CAF50; /* Fondo para encabezados */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+/* Botones */
+button {
+  padding: 8px 12px;
+  margin: 5px;
+  border: none;
   border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
 }
 
-form button {
-  background-color: #0056b3;
-  color: #fff; /* Added this line to set button text color to white */
+button.editar {
+  background-color: #4CAF50;
+  color: white;
 }
 
-.error-message {
-  color: red;
-  margin-bottom: 15px;
+button.editar:hover {
+  background-color: #45a049;
+}
+
+button.eliminar {
+  background-color: #f44336;
+  color: white;
+}
+
+button.eliminar:hover {
+  background-color: #d32f2f;
+}
+
+/* Responsividad */
+@media screen and (max-width: 768px) {
+  table {
+    font-size: 14px;
+  }
+
+  button {
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  table {
+    font-size: 12px;
+  }
+
+  button {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+
+  table th,
+  table td {
+    padding: 8px;
+  }
 }

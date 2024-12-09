@@ -8,6 +8,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
+import java.util.List;
 
 import com.edutecno.dao.UsuarioDAO;
 import com.edutecno.dto.UsuarioDTO;
@@ -28,12 +29,12 @@ public class BuscarUsuarioServlet extends HttpServlet {
 			return;
 		}
 		
-		int idUsuario = Integer.parseInt(request.getParameter("id"));
-		
-		UsuarioDAO usuarioDAO = new UsuarioDAO();
-        UsuarioDTO usuarioDTO = usuarioDAO.traerUsuarioPorId(idUsuario);
+		// Obtener todos los usuarios desde el DAO
+        UsuarioDAO usuarioDAO = new UsuarioDAO();
+        List<UsuarioDTO> usuarios = usuarioDAO.traerTodosUsuarios();
 
-        request.setAttribute("usuario", usuarioDTO);
+        // Pasar la lista de usuarios al JSP
+        request.setAttribute("usuarios", usuarios);
         request.getRequestDispatcher("listarUsuario.jsp").forward(request, response);
 	}
 }

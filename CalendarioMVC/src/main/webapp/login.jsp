@@ -13,7 +13,7 @@
     </header>
     <main>
         <h2>Iniciar Sesión</h2>
-        <form action="LoginServlet" method="post">
+        <form action="IniciarSesionServlet" method="post">
             <label for="username">Usuario</label>
             <input type="text" id="username" name="username" placeholder="Ingresa tu usuario" required>
 

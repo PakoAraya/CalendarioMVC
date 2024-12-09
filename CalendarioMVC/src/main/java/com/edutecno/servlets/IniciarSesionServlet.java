@@ -19,14 +19,14 @@ public class IniciarSesionServlet extends HttpServlet {
 	private static final String PASSWORD = "123456";
        
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String usuario = request.getParameter("usuario");
+		String username = request.getParameter("username");
 		String password = request.getParameter("password");
 		
 		//Validar las credenciales del codigo con respecto a las recibidas por parametros
-		if(USERNAME.equals(usuario) && PASSWORD.equals(password)) {
+		if(USERNAME.equals(username) && PASSWORD.equals(password)) {
 			HttpSession session = request.getSession();
-			session.setAttribute("usuario", usuario);
-			response.sendRedirect("LibroServlet?action=list");
+			session.setAttribute("username", username);
+			response.sendRedirect("admin.jsp");
 		}else {
 			request.setAttribute("error", "Credenciales Invalidas");
 			request.getRequestDispatcher("login.jsp").forward(request, response);
