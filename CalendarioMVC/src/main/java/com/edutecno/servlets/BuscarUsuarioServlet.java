@@ -19,22 +19,21 @@ import com.edutecno.dto.UsuarioDTO;
 @WebServlet("/BuscarUsuarioServlet")
 public class BuscarUsuarioServlet extends HttpServlet {
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    @Override
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Validación de sesión
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("username") == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
 
-		//Validacion de sesion y usuario administrador antes de continuar
-		HttpSession session = request.getSession(false); // Obtener la sesión si existe
-		if (session == null || session.getAttribute("username") == null) {
-			// Si no está logueado, redirigir al Login
-			response.sendRedirect("login.jsp");
-			return;
-		}
-		
-		// Obtener todos los usuarios desde el DAO
+        // Obtener todos los usuarios desde el DAO
         UsuarioDAO usuarioDAO = new UsuarioDAO();
         List<UsuarioDTO> usuarios = usuarioDAO.traerTodosUsuarios();
 
         // Pasar la lista de usuarios al JSP
         request.setAttribute("usuarios", usuarios);
         request.getRequestDispatcher("listarUsuario.jsp").forward(request, response);
-	}
+    }
 }

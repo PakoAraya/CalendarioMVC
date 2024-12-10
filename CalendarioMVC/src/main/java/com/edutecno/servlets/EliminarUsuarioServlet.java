@@ -11,27 +11,37 @@ import java.io.IOException;
 
 import com.edutecno.dao.UsuarioDAO;
 
-/**
- * Servlet implementation class EliminarUsuarioServlet
- */
 @WebServlet("/EliminarUsuarioServlet")
 public class EliminarUsuarioServlet extends HttpServlet {
+    @Override
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Validación de sesión
+        HttpSession session = request.getSession(false);
+        if (session == null || session.getAttribute("username") == null) {
+            response.sendRedirect("login.jsp");
+            return;
+        }
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Obtener el ID del usuario a eliminar
+        String idUsuarioStr = request.getParameter("id");
+        if (idUsuarioStr == null || idUsuarioStr.isEmpty()) {
+            request.setAttribute("error", "No se proporcionó un ID de usuario válido.");
+            request.getRequestDispatcher("listarUsuario.jsp").forward(request, response);
+            return;
+        }
 
-		//Validacion de sesion y usuario administracion
-		HttpSession session = request.getSession(false); // Obtener la sesión si existe
-		if (session == null || session.getAttribute("username") == null) {
-			// Si no está logueado, redirigir al Login
-			response.sendRedirect("login.jsp");
-			return;
-		}
-		
-		int idUsuario = Integer.parseInt(request.getParameter("id"));
+        try {
+            int idUsuario = Integer.parseInt(idUsuarioStr);
 
-        UsuarioDAO usuarioDAO = new UsuarioDAO();
-        usuarioDAO.eliminarUsuario(idUsuario);
+            // Eliminar el usuario de la base de datos
+            UsuarioDAO usuarioDAO = new UsuarioDAO();
+            usuarioDAO.eliminarUsuario(idUsuario);
 
-        response.sendRedirect("ListarUsuariosServlet");
-	}
+            // Redirigir a BuscarUsuarioServlet para mostrar la lista actualizada
+            response.sendRedirect("BuscarUsuarioServlet");
+        } catch (NumberFormatException e) {
+            request.setAttribute("error", "ID de usuario no válido.");
+            request.getRequestDispatcher("listarUsuario.jsp").forward(request, response);
+        }
+    }
 }

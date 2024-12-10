@@ -15,23 +15,33 @@
         <h2>Modificar Usuario</h2>
         <form action="ModificarUsuarioServlet" method="post">
             <% 
-                com.edutecno.modelo.Usuario usuario = (com.edutecno.modelo.Usuario) request.getAttribute("usuario");
+                com.edutecno.dto.UsuarioDTO usuario = (com.edutecno.dto.UsuarioDTO) request.getAttribute("usuario");
                 if (usuario != null) {
             %>
-                <label for="id">ID del Usuario</label>
-                <input type="text" id="id" name="id" value="<%= usuario.getId() %>" readonly>
-
-                <label for="nombre">Nombre</label>
+                <input type="hidden" name="id" value="<%= usuario.getId() %>">
+                
+                <label for="nombre">Nombre:</label>
                 <input type="text" id="nombre" name="nombre" value="<%= usuario.getNombre() %>" required>
 
-                <label for="username">Usuario</label>
+                <label for="username">Usuario:</label>
                 <input type="text" id="username" name="username" value="<%= usuario.getUsername() %>" required>
 
-                <label for="email">Correo Electrónico</label>
+                <label for="email">Correo Electrónico:</label>
                 <input type="email" id="email" name="email" value="<%= usuario.getEmail() %>" required>
 
-                <label for="fechaNacimiento">Fecha de Nacimiento</label>
-                <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="<%= usuario.getFechaNacimiento() %>" required>
+                <label for="fechaNacimiento">Fecha de Nacimiento:</label>
+                <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(usuario.getFechaNacimiento()) %>" required>
+
+                <label for="horoscopoId">Horóscopo:</label>
+                <select name="horoscopoId">
+                    <option value="1" <%= usuario.getHoroscopoDTO().getId() == 1 ? "selected" : "" %>>Rata</option>
+                    <option value="2" <%= usuario.getHoroscopoDTO().getId() == 2 ? "selected" : "" %>>Buey</option>
+                    <option value="3" <%= usuario.getHoroscopoDTO().getId() == 3 ? "selected" : "" %>>Tigre</option>
+                    <!-- Agregar más opciones de horóscopos según sea necesario -->
+                </select>
+
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" value="<%= usuario.getPassword() %>" required>
 
                 <button type="submit">Actualizar Usuario</button>
             <% } else { %>
