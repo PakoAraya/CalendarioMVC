@@ -91,7 +91,7 @@ public class ConsultaHoroscopoServlet extends HttpServlet {
 			// Verificar si se encontró un horóscopo
 			if (horoscopo != null) {
 				request.setAttribute("horoscopo", horoscopo);  // Enviar el horóscopo a la vista
-				request.getRequestDispatcher("resultadosHoroscopo.jsp").forward(request, response);
+				request.getRequestDispatcher("resultadoHoroscopo.jsp").forward(request, response);
 			} else {
 				// Si no se encontró un horóscopo para la fecha proporcionada
 				request.setAttribute("error", "No se encontró un horóscopo para la fecha ingresada.");

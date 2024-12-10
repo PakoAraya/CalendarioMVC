@@ -13,21 +13,28 @@
     </header>
     <main>
         <h2>Consulta tu Horóscopo Chino</h2>
+
+        <!-- Mostrar mensaje de error si existe -->
+        <%
+            String error = (String) request.getAttribute("error");
+            if (error != null) {
+        %>
+            <div class="error-message">
+                <p><%= error %></p>
+            </div>
+        <% } %>
+
         <!-- Formulario para enviar la fecha de nacimiento -->
         <form action="ConsultaHoroscopoServlet" method="post">
             <label for="fechaNacimiento">Fecha de Nacimiento:</label>
             <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
-
             <button type="submit">Consultar</button>
         </form>
 
         <!-- Mostrar resultado del horóscopo si está disponible -->
         <%
-            // Intentar obtener el objeto HoroscopoDTO del atributo de la solicitud
             com.edutecno.dto.HoroscopoDTO horoscopo = 
                 (com.edutecno.dto.HoroscopoDTO) request.getAttribute("horoscopo");
-            
-            // Verificar si se encontró el horóscopo
             if (horoscopo != null) {
         %>
             <div class="result">
@@ -35,11 +42,6 @@
                 <p>Tu signo del horóscopo chino es: <strong><%= horoscopo.getAnimal() %></strong></p>
                 <p>El período de este signo es desde: <strong><%= horoscopo.getFechaInicio() %></strong> 
                 hasta: <strong><%= horoscopo.getFechaFin() %></strong></p>
-            </div>
-        <% } else if (request.getAttribute("error") != null) { %>
-            <!-- Mostrar mensaje de error si algo falló -->
-            <div class="error-message">
-                <p><%= request.getAttribute("error") %></p>
             </div>
         <% } %>
     </main>

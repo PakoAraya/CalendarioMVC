@@ -64,6 +64,15 @@
                     %>
                 </tbody>
             </table>
+            <!-- Contenedor para los botones centrados -->
+        <div class="action-buttons">
+            <form action="CerrarSesionServlet" method="get">
+                <button type="submit">Cerrar Sesión</button>
+            </form>
+            <form action="admin.jsp" method="get">
+                <button type="submit">Volver al Menú Principal</button>
+            </form>
+        </div>
         </div>
     </main>
 </body>
