@@ -30,7 +30,7 @@
                 <tbody>
                     <%
                         java.util.List<com.edutecno.dto.UsuarioDTO> usuarios =
-                            (java.util .List<com.edutecno.dto.UsuarioDTO>) request.getAttribute("usuarios");
+                            (java.util.List<com.edutecno.dto.UsuarioDTO>) request.getAttribute("usuarios");
                         if (usuarios != null && !usuarios.isEmpty()) {
                             for (com.edutecno.dto.UsuarioDTO usuario : usuarios) {
                     %>
@@ -40,12 +40,15 @@
                                 <td><%= usuario.getUsername() %></td>
                                 <td><%= usuario.getEmail() %></td>
                                 <td><%= usuario.getFechaNacimiento() %></td>
-                                <td><%= usuario.getAnimal() %></td>
+                                <!-- Mostrar el animal correctamente -->
+                                <td><%= usuario.getHoroscopoDTO() != null ? usuario.getHoroscopoDTO().getAnimal() : "Sin horóscopo" %></td>
                                 <td>
-                                    <form action="ModificarUsuarioServlet" method="get" style="display:inline;">
+                                    <!-- Formulario para editar -->
+                                    <form action="ModificarUsuarioServlet" method="post" style="display:inline;">
                                         <input type="hidden" name="id" value="<%= usuario.getId() %>">
                                         <button type="submit" class="editar">Editar</button>
                                     </form>
+                                    <!-- Formulario para eliminar -->
                                     <form action="EliminarUsuarioServlet" method="post" style="display:inline;">
                                         <input type="hidden" name="id" value="<%= usuario.getId() %>">
                                         <button type="submit" class="eliminar">Eliminar</button>
@@ -64,15 +67,18 @@
                     %>
                 </tbody>
             </table>
-            <!-- Contenedor para los botones centrados -->
+        </div>
+
+        <!-- Contenedor para los botones centrados -->
         <div class="action-buttons">
+            <!-- Cerrar sesión -->
             <form action="CerrarSesionServlet" method="get">
                 <button type="submit">Cerrar Sesión</button>
             </form>
+            <!-- Volver al menú principal -->
             <form action="admin.jsp" method="get">
                 <button type="submit">Volver al Menú Principal</button>
             </form>
-        </div>
         </div>
     </main>
 </body>
