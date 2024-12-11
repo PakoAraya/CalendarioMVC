@@ -34,6 +34,13 @@ public class BuscarUsuarioServlet extends HttpServlet {
 
         // Pasar la lista de usuarios al JSP
         request.setAttribute("usuarios", usuarios);
-        request.getRequestDispatcher("listarUsuario.jsp").forward(request, response);
+
+        // Redirigir a la página de listar usuarios o eliminar usuarios
+        String action = request.getParameter("action");
+        if ("eliminar".equals(action)) {
+            request.getRequestDispatcher("eliminarUsuario.jsp").forward(request, response);
+        } else {
+            request.getRequestDispatcher("listarUsuario.jsp").forward(request, response);
+        }
     }
 }
