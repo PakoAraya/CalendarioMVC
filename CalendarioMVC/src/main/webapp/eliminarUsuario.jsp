@@ -41,7 +41,7 @@
                                 <td><%= usuario.getFechaNacimiento() %></td>
                                 <td><%= usuario.getHoroscopoDTO() != null ? usuario.getHoroscopoDTO().getAnimal() : "Sin horóscopo" %></td>
                                 <td>
-                                    <form action="EliminarUsuarioServlet" method="post" style="display:inline;">
+                                    <form action="EliminarUsuarioServlet?redirigir=eliminar" method="post" style="display:inline;">
                                         <input type="hidden" name="id" value="<%= usuario.getId() %>">
                                         <button type="submit" class="eliminar">Eliminar</button>
                                     </form>

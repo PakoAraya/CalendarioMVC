@@ -50,8 +50,13 @@ public class EliminarUsuarioServlet extends HttpServlet {
             List<UsuarioDTO> usuarios = usuarioDAO.traerTodosUsuarios();
             request.setAttribute("usuarios", usuarios);
 
-            // Redirigir al JSP de eliminación
-            request.getRequestDispatcher("eliminarUsuario.jsp").forward(request, response);
+            // Verificar si se debe redirigir a la vista de eliminar usuario
+            String redirigir = request.getParameter("redirigir");
+            if (redirigir != null && redirigir.equals("eliminar")) {
+                request.getRequestDispatcher("eliminarUsuario.jsp").forward(request, response);
+            } else {
+                request.getRequestDispatcher("listarUsuario.jsp").forward(request, response);
+            }
 
         } catch (NumberFormatException e) {
             request.setAttribute("error", "ID de usuario no válido.");

@@ -49,7 +49,7 @@
                                         <button type="submit" class="editar">Editar</button>
                                     </form>
                                     <!-- Formulario para eliminar -->
-                                    <form action="EliminarUsuarioServlet" method="get" style="display:inline;">
+                                    <form action="EliminarUsuarioServlet?redirigir=listar" method="get" style="display:inline;">
                                         <input type="hidden" name="id" value="<%= usuario.getId() %>">
                                         <button type="submit" class="eliminar">Eliminar</button>
                                     </form>
