@@ -1,6 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,11 +9,10 @@
 </head>
 <body>
     <header>
-        <h1>Consulta tu Horóscopo Chino</h1>
+        <h1>Registro de Usuario</h1>
     </header>
     <main>
-        <h2>Registro de Usuario</h2>
-        <form action="RegistroServlet" method="post">
+        <form action="CrearUsuarioServlet" method="post">
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo" required>
 
@@ -24,13 +23,24 @@
             <input type="email" id="email" name="email" placeholder="Ingresa tu correo electrónico" required>
 
             <label for="fechaNacimiento">Fecha de Nacimiento</label>
-            <input type="date" id="fechaNacimiento" name="fechaNacimiento" required>
+            <input type="date" id="fechaNacimiento" name="fecha_nacimiento" required>
 
             <label for="password">Contraseña</label>
             <input type="password" id="password" name="password" placeholder="Elige una contraseña" required>
 
             <button type="submit">Registrarse</button>
         </form>
+
+        <!-- Mensaje de error si existe -->
+        <%
+            String error = (String) request.getAttribute("error");
+            if (error != null) {
+        %>
+            <div class="error-message">
+                <p><%= error %></p>
+            </div>
+        <% } %>
+
         <p>¿Ya tienes cuenta? <a href="login.jsp">Inicia sesión aquí</a>.</p>
     </main>
 </body>

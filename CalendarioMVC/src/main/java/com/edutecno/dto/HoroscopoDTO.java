@@ -15,6 +15,11 @@ public class HoroscopoDTO {
 		
 	}
 	
+	// Constructor con solo el ID
+    public HoroscopoDTO(int id) {
+        this.id = id;
+    }
+	
 	//Constructo basado en el modelo Horoscopo
 	public HoroscopoDTO(Horoscopo horoscopo) {
 		this.id = horoscopo.getId();

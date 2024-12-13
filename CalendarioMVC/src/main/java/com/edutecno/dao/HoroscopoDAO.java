@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.edutecno.dto.HoroscopoDTO;
@@ -125,4 +126,23 @@ public class HoroscopoDAO {
             System.err.println("Error al actualizar el horóscopo: " + e.getMessage());
         }
     }
+    
+    //Metodo para obtener el id de un rango de fecha e ingresar en la base de datos
+    public int obtenerHoroscopoIdPorFechaNacimiento(Date fechaNacimiento) throws SQLException {
+        int horoscopoId = -1;
+        String query = "SELECT id FROM horoscopo WHERE fecha_inicio <= ? AND fecha_fin >= ?";
+        try (Connection connection = DatabaseUtil.getConnection();
+             PreparedStatement pstmt = connection.prepareStatement(query)) {
+
+            pstmt.setDate(1, new java.sql.Date(fechaNacimiento.getTime()));
+            pstmt.setDate(2, new java.sql.Date(fechaNacimiento.getTime()));
+
+            ResultSet rs = pstmt.executeQuery();
+            if (rs.next()) {
+                horoscopoId = rs.getInt("id");
+            }
+        }
+        return horoscopoId;
+    }
+
 }
