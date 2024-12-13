@@ -1,0 +1,74 @@
+@charset "UTF-8";
+
+body {
+	font-family: Arial, Helvetica, sans-serif;
+	margin: 0;
+	padding: 0;
+	background-color: #f4f4f9;
+}
+
+header h1 {
+	text-align: center;
+	margin-bottom: 20px;
+}
+
+.form-container {
+	max-width: 400px;
+	margin: 0 auto;
+	background: #ffffff;
+	padding: 20px; /* Ajusta el espacio interno */
+	border-radius: 8px;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+	box-sizing: border-box;
+	/* Asegura que el padding no afecte el tamaño total */
+}
+
+.form-container label {
+	display: block;
+	font-weight: bold;
+	margin-bottom: 8px;
+}
+
+.form-container input {
+	width: 100%; /* Ajusta el ancho completamente al contenedor */
+	padding: 10px; /* Espacio interno dentro del input */
+	margin-bottom: 15px;
+	border: 1px solid #ddd;
+	border-radius: 4px;
+	font-size: 14px;
+	box-sizing: border-box;
+	/* Incluye padding y border en el cálculo de ancho */
+}
+
+.form-container button {
+	width: 100%;
+	padding: 10px;
+	background-color: #4CAF50;
+	color: white;
+	font-size: 16px;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
+
+.form-container button:hover {
+	background-color: #45a049;
+}
+
+.error-message {
+	color: red;
+	margin-bottom: 15px;
+}
+
+.form-container p {
+	text-align: center;
+}
+
+.form-container a {
+	color: #4CAF50;
+	text-decoration: none;
+}
+
+.form-container a:hover {
+	text-decoration: underline;
+}

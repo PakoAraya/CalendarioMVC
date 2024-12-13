@@ -13,6 +13,25 @@
     </header>
     <main>
         <h2>Lista de Usuarios</h2>
+        
+        <!-- Contenedor para los botones centrados -->
+        <div class="action-buttons">
+            <!-- Botón para agregar un nuevo usuario -->
+            <form action="registro.jsp" method="get">
+                <button type="submit">Agregar Nuevo Usuario</button>
+            </form>
+
+            <!-- Volver al menú principal -->
+            <form action="admin.jsp" method="get">
+                <button type="submit">Volver al Menú Principal</button>
+            </form>
+            
+            <!-- Cerrar sesión -->
+            <form action="CerrarSesionServlet" method="get">
+                <button type="submit">Cerrar Sesión</button>
+            </form>
+        </div>
+        
         <!-- Contenedor para la tabla -->
         <div class="table-container">
             <table>
@@ -69,17 +88,6 @@
             </table>
         </div>
 
-        <!-- Contenedor para los botones centrados -->
-        <div class="action-buttons">
-            <!-- Cerrar sesión -->
-            <form action="CerrarSesionServlet" method="get">
-                <button type="submit">Cerrar Sesión</button>
-            </form>
-            <!-- Volver al menú principal -->
-            <form action="admin.jsp" method="get">
-                <button type="submit">Volver al Menú Principal</button>
-            </form>
-        </div>
     </main>
 </body>
 </html>
