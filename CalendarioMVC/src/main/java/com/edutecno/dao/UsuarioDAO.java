@@ -21,7 +21,8 @@ public class UsuarioDAO {
 
         String query = "SELECT u.*, h.id AS horoscopo_id, h.animal, h.fecha_inicio, h.fecha_fin " +
                        "FROM usuarios u " +
-                       "LEFT JOIN horoscopo h ON u.horoscopo_id = h.id";
+                       "LEFT JOIN horoscopo h ON u.horoscopo_id = h.id " + 
+                       "ORDER BY u.id ASC";
         try (Connection connection = DatabaseUtil.getConnection();
              PreparedStatement pstmt = connection.prepareStatement(query);
              ResultSet rs = pstmt.executeQuery()) {
