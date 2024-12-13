@@ -18,6 +18,7 @@
         <div class="action-buttons">
             <!-- Botón para agregar un nuevo usuario -->
             <form action="registro.jsp" method="get">
+            <input type="hidden" name="redirigir" value="listar" />
                 <button type="submit">Agregar Nuevo Usuario</button>
             </form>
 

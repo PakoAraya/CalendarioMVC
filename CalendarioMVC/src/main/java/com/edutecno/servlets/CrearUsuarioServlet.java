@@ -79,27 +79,8 @@ public class CrearUsuarioServlet extends HttpServlet {
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             usuarioDAO.agregarUsuario(usuarioDTO);
 
-            // Si no hay sesión activa (es decir, el usuario no está logueado)
-            if (usuarioActivo == null) {
-                // Redirigir a login.jsp después de registrarse desde login
-                response.sendRedirect("login.jsp");
-                return;
-            }
-
-            // Obtener el parámetro "redirigir" de la solicitud
-            String redirigir = request.getParameter("redirigir");
-
-            // Si el parámetro "redirigir" es "listar", se redirige a listarUsuario.jsp solo si hay sesión activa
-            if ("listar".equals(redirigir)) {
-                if (usuarioActivo != null) {
-                    response.sendRedirect("listarUsuario.jsp");
-                } else {
-                    response.sendRedirect("login.jsp"); // Si no está logueado, redirigir a login
-                }
-            } else {
-                // Si no se especifica redirigir, siempre llevar a login
-                response.sendRedirect("login.jsp");
-            }
+            // Redirigir a BuscarUsuarioServlet para actualizar la lista de usuarios
+            response.sendRedirect("BuscarUsuarioServlet");
 
         } catch (Exception e) {
             e.printStackTrace();
@@ -108,3 +89,5 @@ public class CrearUsuarioServlet extends HttpServlet {
         }
     }
 }
+
+
