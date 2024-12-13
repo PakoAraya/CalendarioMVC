@@ -13,7 +13,7 @@
     </header>
     <main>
         <div class="form-container">
-            <form action="CrearUsuarioServlet" method="post">
+            <form action="CrearUsuarioServlet?redirigir=listar" method="post">
                 <label for="nombre">Nombre</label>
                 <input type="text" id="nombre" name="nombre" placeholder="Ingresa tu nombre completo" required>
 

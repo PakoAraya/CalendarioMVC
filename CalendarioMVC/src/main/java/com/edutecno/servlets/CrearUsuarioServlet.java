@@ -5,6 +5,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import com.edutecno.dao.UsuarioDAO;
 import com.edutecno.dao.HoroscopoDAO;
@@ -22,6 +23,10 @@ public class CrearUsuarioServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
+            // Verificar si ya hay una sesión activa con un usuario
+            HttpSession session = request.getSession(false);
+            UsuarioDTO usuarioActivo = (session != null) ? (UsuarioDTO) session.getAttribute("usuario") : null;
+
             // Obtener parámetros del formulario
             String nombre = request.getParameter("nombre");
             String username = request.getParameter("username");
@@ -74,8 +79,27 @@ public class CrearUsuarioServlet extends HttpServlet {
             UsuarioDAO usuarioDAO = new UsuarioDAO();
             usuarioDAO.agregarUsuario(usuarioDTO);
 
-            // Redirigir al login después del registro exitoso
-            response.sendRedirect("login.jsp");
+            // Si no hay sesión activa (es decir, el usuario no está logueado)
+            if (usuarioActivo == null) {
+                // Redirigir a login.jsp después de registrarse desde login
+                response.sendRedirect("login.jsp");
+                return;
+            }
+
+            // Obtener el parámetro "redirigir" de la solicitud
+            String redirigir = request.getParameter("redirigir");
+
+            // Si el parámetro "redirigir" es "listar", se redirige a listarUsuario.jsp solo si hay sesión activa
+            if ("listar".equals(redirigir)) {
+                if (usuarioActivo != null) {
+                    response.sendRedirect("listarUsuario.jsp");
+                } else {
+                    response.sendRedirect("login.jsp"); // Si no está logueado, redirigir a login
+                }
+            } else {
+                // Si no se especifica redirigir, siempre llevar a login
+                response.sendRedirect("login.jsp");
+            }
 
         } catch (Exception e) {
             e.printStackTrace();
