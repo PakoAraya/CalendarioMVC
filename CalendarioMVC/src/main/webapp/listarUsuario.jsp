@@ -13,27 +13,22 @@
     </header>
     <main>
         <h2>Lista de Usuarios</h2>
-        
-        <!-- Contenedor para los botones centrados -->
+
         <div class="action-buttons">
-            <!-- Botón para agregar un nuevo usuario -->
-            <form action="registro.jsp" method="get">
-            <input type="hidden" name="redirigir" value="listar" />
+            <form action="registro.jsp" method="get" onsubmit="mostrarUsuarioAgregado()">
+                <input type="hidden" name="redirigir" value="listar" />
                 <button type="submit">Agregar Nuevo Usuario</button>
             </form>
 
-            <!-- Volver al menú principal -->
             <form action="admin.jsp" method="get">
                 <button type="submit">Volver al Menú Principal</button>
             </form>
             
-            <!-- Cerrar sesión -->
             <form action="CerrarSesionServlet" method="get">
                 <button type="submit">Cerrar Sesión</button>
             </form>
         </div>
         
-        <!-- Contenedor para la tabla -->
         <div class="table-container">
             <table>
                 <thead>
@@ -60,16 +55,14 @@
                                 <td><%= usuario.getUsername() %></td>
                                 <td><%= usuario.getEmail() %></td>
                                 <td><%= usuario.getFechaNacimiento() %></td>
-                                <!-- Mostrar el animal correctamente -->
                                 <td><%= usuario.getHoroscopoDTO() != null ? usuario.getHoroscopoDTO().getAnimal() : "Sin horóscopo" %></td>
                                 <td>
-                                    <!-- Formulario para editar -->
-                                    <form action="ModificarUsuarioServlet" method="post" style="display:inline;">
+                                    <form action="ModificarUsuarioServlet" method="post" style="display:inline;" onsubmit="return confirmarEdicion()">
                                         <input type="hidden" name="id" value="<%= usuario.getId() %>">
                                         <button type="submit" class="editar">Editar</button>
                                     </form>
-                                    <!-- Formulario para eliminar -->
-                                    <form action="EliminarUsuarioServlet?redirigir=listar" method="get" style="display:inline;">
+                                    <!-- Solo 'onsubmit' para la eliminación -->
+                                    <form action="EliminarUsuarioServlet?redirigir=listar" method="get" style="display:inline;" onsubmit="return confirmarEliminacion()">
                                         <input type="hidden" name="id" value="<%= usuario.getId() %>">
                                         <button type="submit" class="eliminar">Eliminar</button>
                                     </form>
@@ -90,5 +83,6 @@
         </div>
 
     </main>
+    <script src="js/scripts.js"></script> <!-- Cargar el JS al final -->
 </body>
 </html>

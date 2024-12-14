@@ -80,7 +80,7 @@ public class CrearUsuarioServlet extends HttpServlet {
             usuarioDAO.agregarUsuario(usuarioDTO);
 
             // Redirigir a BuscarUsuarioServlet para actualizar la lista de usuarios
-            response.sendRedirect("BuscarUsuarioServlet");
+            response.sendRedirect("BuscarUsuarioServlet?redirigir=listar");
 
         } catch (Exception e) {
             e.printStackTrace();

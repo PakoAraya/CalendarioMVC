@@ -18,6 +18,7 @@
 				<button type="submit">¿Cuál es tu animal?</button>
 			</form>
 			<form action="BuscarUsuarioServlet" method="get">
+				<input type="hidden" name="redirigir" value="listar">
 				<button type="submit">Buscar Usuarios</button>
 			</form>
 			<form action="ModificarUsuarioServlet" method="post">

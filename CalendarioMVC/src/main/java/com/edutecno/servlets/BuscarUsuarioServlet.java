@@ -36,11 +36,14 @@ public class BuscarUsuarioServlet extends HttpServlet {
         request.setAttribute("usuarios", usuarios);
 
         // Redirigir a la página de listar usuarios o eliminar usuarios
-        String action = request.getParameter("action");
-        if ("eliminar".equals(action)) {
+        String redirigir = request.getParameter("redirigir");
+        if ("listar".equals(redirigir)) {
+            request.getRequestDispatcher("listarUsuario.jsp").forward(request, response);
+        } else if ("eliminar".equals(redirigir)) {
             request.getRequestDispatcher("eliminarUsuario.jsp").forward(request, response);
         } else {
-            request.getRequestDispatcher("listarUsuario.jsp").forward(request, response);
+            response.sendRedirect("login.jsp");
         }
+
     }
 }
