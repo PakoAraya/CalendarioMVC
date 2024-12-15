@@ -28,6 +28,9 @@ public class ModificarUsuarioServlet extends HttpServlet {
         }
 
         // Obtener los parámetros del formulario para modificar usuario
+        String idParam = request.getParameter("id");
+        System.out.println("ID recibido: " + idParam);
+        
         try {
             int idUsuario = Integer.parseInt(request.getParameter("id"));
             String nombre = request.getParameter("nombre");

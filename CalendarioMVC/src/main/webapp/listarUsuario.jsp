@@ -57,7 +57,7 @@
                                 <td><%= usuario.getFechaNacimiento() %></td>
                                 <td><%= usuario.getHoroscopoDTO() != null ? usuario.getHoroscopoDTO().getAnimal() : "Sin horóscopo" %></td>
                                 <td>
-                                    <form action="ModificarUsuarioServlet" method="post" style="display:inline;" onsubmit="return confirmarEdicion()">
+                                    <form action="ModificarUsuarioServlet" method="get" style="display:inline;">
                                         <input type="hidden" name="id" value="<%= usuario.getId() %>">
                                         <button type="submit" class="editar">Editar</button>
                                     </form>

@@ -15,7 +15,6 @@
         <h2>Modificar Usuario</h2>
         <form action="ModificarUsuarioServlet" method="post">
             <% 
-                // Obtener el usuario desde el request
                 com.edutecno.dto.UsuarioDTO usuario = (com.edutecno.dto.UsuarioDTO) request.getAttribute("usuario");
                 if (usuario != null) {
             %>
@@ -38,7 +37,6 @@
                     <option value="1" <%= usuario.getHoroscopoDTO() != null && usuario.getHoroscopoDTO().getId() == 1 ? "selected" : "" %>>Rata</option>
                     <option value="2" <%= usuario.getHoroscopoDTO() != null && usuario.getHoroscopoDTO().getId() == 2 ? "selected" : "" %>>Buey</option>
                     <option value="3" <%= usuario.getHoroscopoDTO() != null && usuario.getHoroscopoDTO().getId() == 3 ? "selected" : "" %>>Tigre</option>
-                    <!-- Agregar más opciones de horóscopos según sea necesario -->
                 </select>
 
                 <label for="password">Contraseña:</label>
@@ -50,17 +48,10 @@
             <% } %>
         </form>
 
-        <!-- Mostrar mensaje de error si existe -->
-        <%
-            String errorMessage = (String) request.getAttribute("error");
-            if (errorMessage != null) {
-        %>
-            <div class="error-message">
-                <p><%= errorMessage %></p>
-            </div>
-        <% } %>
-
-        <!-- Botones para cerrar sesión y volver al menú principal -->
+        <div class="error-message">
+            <%= request.getAttribute("error") != null ? request.getAttribute("error") : "" %>
+        </div>
+        
         <div class="action-buttons">
             <form action="CerrarSesionServlet" method="get">
                 <button type="submit">Cerrar Sesión</button>
