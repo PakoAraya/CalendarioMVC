@@ -32,13 +32,6 @@
                 <label for="fechaNacimiento">Fecha de Nacimiento:</label>
                 <input type="date" id="fechaNacimiento" name="fechaNacimiento" value="<%= new java.text.SimpleDateFormat("yyyy-MM-dd").format(usuario.getFechaNacimiento()) %>" required>
 
-                <label for="horoscopoId">Horóscopo:</label>
-                <select name="horoscopoId">
-                    <option value="1" <%= usuario.getHoroscopoDTO() != null && usuario.getHoroscopoDTO().getId() == 1 ? "selected" : "" %>>Rata</option>
-                    <option value="2" <%= usuario.getHoroscopoDTO() != null && usuario.getHoroscopoDTO().getId() == 2 ? "selected" : "" %>>Buey</option>
-                    <option value="3" <%= usuario.getHoroscopoDTO() != null && usuario.getHoroscopoDTO().getId() == 3 ? "selected" : "" %>>Tigre</option>
-                </select>
-
                 <label for="password">Contraseña:</label>
                 <input type="password" id="password" name="password" value="<%= usuario.getPassword() %>" required>
 
